@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6525966711059101947}
   - component: {fileID: 1847616515099407338}
   - component: {fileID: 1447146647}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ MonoBehaviour:
   ammo: {fileID: 7189382293200314927, guid: 5a6ef7f89f8e4ab41ae79a750fe545bd, type: 3}
   fireTransform: {fileID: 4979703973695455415}
   fireRate: 0.5
-  ammoCount: 5
+  maxAmmoCount: 5
 --- !u!136 &1447146647
 CapsuleCollider:
   m_ObjectHideFlags: 0

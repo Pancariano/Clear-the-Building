@@ -35,7 +35,7 @@ public class Attack : MonoBehaviour
                 Fire();
             }
         }
-        print(transform.eulerAngles.y);
+        //print(transform.eulerAngles.y);
     }
     private void Fire()
     {
