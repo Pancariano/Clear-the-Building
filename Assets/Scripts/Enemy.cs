@@ -10,15 +10,36 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float shootRange = 10f;
     [SerializeField] private LayerMask shootLayer;
     [SerializeField] private Transform aimTransform;
-    
+
+    private Attack attack;
+
+    private void Start()
+    {
+        attack = GetComponent<Attack>();
+    }
+
     void Update()
     {
+        EnemyAttack();
         CheckCanMoveRight();
         MoveTowards();
         Aim();
     }
+
+    private void EnemyAttack()
+    {
+        if (attack.GetCurrentFireRate <= 0 && attack.GetAmmo > 0 && Aim())
+        {
+            attack.Fire();
+        }
+    }
     private void MoveTowards()
     {
+        //mermi varsa ve player menzildeyse hareket etme
+        if(Aim() && attack.GetAmmo > 0)
+        {
+            return;
+        }
         if(!canMoveRight) // false ise çalıştır. Ünleme dikkat
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(movePoints[0].position.x,transform.position.y, movePoints[0].position.z), speed * Time.deltaTime);
@@ -47,16 +68,16 @@ public class Enemy : MonoBehaviour
     //düşmanın player'a bakması için kaç derece dönmesi gerektiğini hesaplar
     private void LookAtTheTarget(Vector3 newTarget)
     {
-        Vector3 newLookPosition = new Vector3(newTarget.x, transform.position.y, newTarget.z);
+        Vector3 newLookPosition = new(newTarget.x, transform.position.y, newTarget.z);
         Quaternion targetRotation = Quaternion.LookRotation(newLookPosition-transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation,speed * Time.deltaTime);
     }
-    private void Aim()
+    private bool Aim()
     {
         //silahın ucundaki konumdan ileri doğru bir ışın çıkart. shootLayer'da bir objeye çarparsan true döndür
         bool hit = Physics.Raycast(aimTransform.position, -transform.forward, shootRange, shootLayer);
         //lazerin çıktığı pozisyondan ileri doğru shootRange kadar sarı bir ışın çiz
         Debug.DrawRay(aimTransform.position,-transform.forward * shootRange, Color.blue);
-        print("Can Shoot" + hit);
+        return hit;
     }
 }

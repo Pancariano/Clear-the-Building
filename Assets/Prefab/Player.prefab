@@ -237,8 +237,9 @@ MonoBehaviour:
   fireTransform: {fileID: 4979703973695455415}
   fireRate: 0.5
   maxAmmoCount: 5
---- !u!136 &1447146647
-CapsuleCollider:
+  isPlayer: 1
+--- !u!65 &1447146647
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -247,10 +248,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 4.8864737, y: 2, z: 1.0000002}
+  m_Center: {x: -0.2942115, y: 0, z: -6.2828415e-16}
 --- !u!1001 &1925591188165462687
 PrefabInstance:
   m_ObjectHideFlags: 0
